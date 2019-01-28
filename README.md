@@ -1,3 +1,3 @@
 ### lock-bitmap 
 
-This is the clone from codeproject tip (http://www.codeproject.com/Tips/240428/Work-with-bitmap-faster-with-Csharp)
+For usage example please take a look: http://www.codeproject.com/Tips/240428/Work-with-bitmap-faster-with-Csharp
