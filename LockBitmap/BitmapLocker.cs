@@ -2,11 +2,10 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
-using System.Xml.Schema;
 
 namespace LockBitmap
 {
-    public class LockBitmap : IDisposable
+    public class BitmapLocker : IDisposable
     {
         private readonly Bitmap source;
         private IntPtr iptr = IntPtr.Zero;
@@ -22,7 +21,7 @@ namespace LockBitmap
         public int Width { get; private set; }
         public int Height { get; private set; }
 
-        public LockBitmap(Bitmap source)
+        public BitmapLocker(Bitmap source)
         {
             this.source = source;
             LockBits();
