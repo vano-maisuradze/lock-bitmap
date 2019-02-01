@@ -59,10 +59,10 @@ namespace LockBitmap
                     // get source bitmap pixel format size
                     Depth = Image.GetPixelFormatSize(source.PixelFormat);
 
-                    // Check if bpp (Bits Per Pixel) is 8, 24, or 32
-                    if (Depth != 8 && Depth != 24 && Depth != 32)
+                    // Check if bpp (Bits Per Pixel) is 24, or 32
+                    if (Depth != 24 && Depth != 32)
                     {
-                        throw new ArgumentException("Only 8, 24 and 32 bpp images are supported.");
+                        throw new ArgumentException("Only 24 and 32 bpp images are supported.");
                     }
 
                     // Lock bitmap and return bitmap data
@@ -144,8 +144,7 @@ namespace LockBitmap
                 var a = Pixels[i + 3]; // a
                 clr = Color.FromArgb(a, r, g, b);
             }
-
-            if (Depth == 24) // For 24 BPP get Red, Green and Blue
+            else if (Depth == 24) // For 24 BPP get Red, Green and Blue
             {
                 var b = Pixels[i];
                 var g = Pixels[i + 1];
@@ -153,12 +152,6 @@ namespace LockBitmap
                 clr = Color.FromArgb(r, g, b);
             }
 
-            // For 8 BPP get color value (Red, Green and Blue values are the same)
-            if (Depth == 8)
-            {
-                var c = Pixels[i];
-                clr = Color.FromArgb(c, c, c);
-            }
             return clr;
         }
 
@@ -183,18 +176,11 @@ namespace LockBitmap
                 Pixels[i + 2] = color.R;
                 Pixels[i + 3] = color.A;
             }
-
-            if (Depth == 24) // For 24 BPP set Red, Green and Blue
+            else if (Depth == 24) // For 24 BPP set Red, Green and Blue
             {
                 Pixels[i] = color.B;
                 Pixels[i + 1] = color.G;
                 Pixels[i + 2] = color.R;
-            }
-
-            // For 8 BPP set color value (Red, Green and Blue values are the same)
-            if (Depth == 8)
-            {
-                Pixels[i] = color.B;
             }
         }
 
